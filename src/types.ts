@@ -33,6 +33,94 @@ export interface ShopItem {
   rarity: 'common' | 'rare' | 'legendary';
   icon: string;
   metadata?: any;
+  isPremium?: boolean;
+  requiredTier?: PremiumTier;
+}
+
+// Monetization Types
+export type PremiumTier = 'free' | 'patron' | 'master';
+
+export interface SubscriptionPlan {
+  id: string;
+  name: string;
+  tier: PremiumTier;
+  price: number; // monthly price in USD, 0 for free
+  benefits: string[];
+  icon: string;
+  color: string;
+}
+
+export interface MerchItem {
+  id: string;
+  name: string;
+  description: string;
+  basePrice: number;
+  image: string;
+  category: 'print' | 'apparel' | 'accessory';
+  relatedFlower?: string;
+}
+
+export interface PartnerAd {
+  id: string;
+  partnerName: string;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  theme: 'nature' | 'wellness' | 'garden';
+}
+
+export interface ExclusiveZone {
+  id: string;
+  name: string;
+  description: string;
+  requiredTier: PremiumTier;
+  unlockPrice?: number; // one-time purchase for non-subscribers
+  backgroundImage: string;
+  uniqueFlowers: string[];
+  loreId?: string;
+}
+
+export interface LoreEntry {
+  id: string;
+  title: string;
+  content: string;
+  relatedFlower?: string;
+  relatedZone?: string;
+  isPremium: boolean;
+  requiredTier?: PremiumTier;
+  icon: string;
+}
+
+export interface SeasonalEvent {
+  id: string;
+  name: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  rewards: EventReward[];
+  subscriberBonus: string;
+  theme: string;
+  bannerImage: string;
+}
+
+export interface EventReward {
+  id: string;
+  name: string;
+  type: 'seed' | 'decor' | 'points' | 'lore';
+  value: number | string;
+  isSubscriberOnly: boolean;
+}
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  subscriptionTier: PremiumTier;
+  subscriptionExpiry?: string;
+  unlockedZones: string[];
+  unlockedLore: string[];
+  purchasedPremiumItems: string[];
+  adsOptOut: boolean;
 }
 
 export interface Quest {
