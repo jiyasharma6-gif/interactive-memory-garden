@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "Flower": {
+      "title": "Flower",
+      "description": "A flower planted in the garden by a user representing a memory or dedication.",
+      "type": "object",
+      "properties": {
+        "planterName": {
+          "type": "string",
+          "description": "The name of the person who planted the flower."
+        },
+        "message": {
+          "type": "string",
+          "description": "A hidden memory, dedication, or wish."
+        },
+        "color": {
+          "type": "string",
+          "description": "The hex color of the flower."
+        },
+        "x": {
+          "type": "number",
+          "description": "Horizontal position in percentage (0-100)."
+        },
+        "y": {
+          "type": "number",
+          "description": "Vertical position in percentage (0-100)."
+        },
+        "careCount": {
+          "type": "integer",
+          "description": "How many times this flower has been watered or pollinated."
+        },
+        "rarity": {
+          "type": "string",
+          "enum": ["common", "rare", "legendary"],
+          "description": "The rarity of the flower, unlocked via points or games."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the flower was planted."
+        }
+      },
+      "required": ["planterName", "message", "color", "x", "y", "createdAt"]
+    }
+  },
+  "firestore": {
+    "flowers": {
+      "schema": "Flower",
+      "description": "A collection of all flowers in the garden."
+    }
+  }
+}
